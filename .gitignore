@@ -1,0 +1,5 @@
+.venv
+tmp
+.ipynb_checkpoints
+allen_visual_behavior_2p_change_detection_familiar_novel_image_sets.parquet
+Pipfile
