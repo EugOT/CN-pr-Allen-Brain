@@ -16,3 +16,9 @@ the activity of the surrounding neurons."
 VIP und Somatostatin haben auch andere Funktionen im Körper zb Verdauung:
 https://de.wikipedia.org/wiki/Somatostatin
 https://de.wikipedia.org/wiki/Vasoaktives_intestinales_Peptid
+
+
+Visual Cortex
+
+Organization of Neural Population Code in Mouse Visual System: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6071196/
+Fear-related signals in the Primary Visual Cortex: https://pubmed.ncbi.nlm.nih.gov/31668624/
