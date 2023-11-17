@@ -6,8 +6,13 @@ Somatostatin and Somatostatin containing neurons: https://pubmed.ncbi.nlm.nih.go
 Vasoactive intestinal polypeptide (VIP) ist ein modulatorischer Transmitter in GABAergen Neuronen. 
 Es scheint einen signifikanten Einfluss auf soziales Verhalten zu haben.
 Somatostatin (SST, SOM) ist ein ebenfalls ein modulatorischer Transmitter in Interneuronen.
+Beide sind Peptidhormone/-neurotransmitter.
 
 "In CNS, somatostatin functions as a neurotransmitter or neuromodulator with mainly inhibitory action. 
 It is also an important regulator of cell proliferation and differentiation. In the cerebral cortex, 
 somatostatin is a co-transmitter of GABAergic inhibitory neurons. As a co-transmitter it can modulate 
 the activity of the surrounding neurons."
+
+VIP und Somatostatin haben auch andere Funktionen im Körper zb Verdauung:
+https://de.wikipedia.org/wiki/Somatostatin
+https://de.wikipedia.org/wiki/Vasoaktives_intestinales_Peptid
