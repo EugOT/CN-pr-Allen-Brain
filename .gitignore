@@ -1,2 +1,3 @@
 *.parquet
 .vscode/extensions.json
+/data
