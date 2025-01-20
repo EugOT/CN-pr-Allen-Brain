@@ -31,7 +31,7 @@ def _check_unique_combination(data_grouped, list_unique_column_combination, outp
     
     return True
 
-def create_neural_traces_per_label(data_file_path = "data.csv", columns_of_interest = ["stimulus_presentations_id", "cell_specimen_id", "trace",
+def create_neural_traces_per_label(data_file_path = "data/data.csv", columns_of_interest = ["stimulus_presentations_id", "cell_specimen_id", "trace",
                                                                                        "trace_timestamps", "image_name", "image_index", "mouse_id",
                                                                                        "animal_in_image", "close_proximity"]):
     """
@@ -60,6 +60,13 @@ def create_neural_traces_per_label(data_file_path = "data.csv", columns_of_inter
 
     data_grouped = data.groupby(columns_trial_dependent).agg(aggregation_dictionary).reset_index()
 
+    trial_counts = data.groupby(columns_trial_dependent)["cell_specimen_id"].value_counts()
+    duplicates = trial_counts[trial_counts > 1].reset_index().rename(columns={0: 'count'})
+    if not duplicates.empty:
+        trials_to_exclude = duplicates[columns_trial_dependent].drop_duplicates()
+        data_grouped = data_grouped[~data_grouped[columns_trial_dependent].apply(tuple, 1).isin(trials_to_exclude.apply(tuple, 1))]
+        print(f"Excluded {len(trials_to_exclude)} because of duplicate cell_specimen_ids.")
+
     # Make sure that the data that should be the same per trial are the same. If they are not, the excess trials are deleted.
     if(not _check_unique_combination(data_grouped, columns_unique)):
         counts = data_grouped.groupby(columns_unique).size().reset_index(name='count')                  # Used to extract which "stimulus_presentations_id", "mouse_id" combinations only occur once.
@@ -75,6 +82,3 @@ def create_neural_traces_per_label(data_file_path = "data.csv", columns_of_inter
     if not os.path.exists(data_folder):
         os.makedirs(data_folder)
     data_grouped.to_csv(f"{data_folder}/neural_activity_per_trial.csv", index=False)
-    
-
-create_neural_traces_per_label()
