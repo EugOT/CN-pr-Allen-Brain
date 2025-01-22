@@ -59,6 +59,7 @@ So far there are 5 branches (additional to the "main"-branch, corresponding to t
 - MLP (multi layer perceptron/ neural network) for animal yes/no task
     - input neurons: dilation, speed, response, traces(?)
     - output neuron: ....
-- autoencoder:
-    - feature vector: consists of traces with animal_in_image=True (in separate notebook "neural_data_analysis.ipynb")
-    - label vector 
+- Autoencoder + Logistic Regression (in "neural_data_analysis.ipynb"):
+    - created feature vector: consists of traces 
+    - label vector: animal_in_image / animal_in_image + close_proximity
+    - used logistic regression in latent space
