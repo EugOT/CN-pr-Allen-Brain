@@ -1,4 +1,8 @@
 # 2-Photon Calcium Imaging
+Based on:
+- Technical white paper: https://portal.brain-map.org/circuits-behavior/visual-behavior-2p
+- Paper "Two-photon calcium imaging of neuronal activity": https://www.nature.com/articles/s43586-022-00147-1
+
 To measure the activity of neurons in mice, the experiment used a technique called the 2-photon calcium imaging method. This method relies on special fluorescent dyes or genetically modified molecules (such as the molecule GCaMP6 used in this experiment) that react to calcium. But why calcium? When a neuron "fires" (= becomes active), calcium flows into the cell. By measuring the calcium levels, scientists can determine when and how strongly a neuron is active. With 2-photon calcium imaging, researchers can precisely observe how individual neurons and larger networks respond to visual stimuli—in real-time. When combined with the Change Detection Task, this method allows scientists to study how the brain processes environmental changes and how learning, novelty, and attention influence neuronal activity.
 
 ## Applications
