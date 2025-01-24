@@ -59,7 +59,11 @@ So far there are 5 branches (additional to the "main"-branch, corresponding to t
 - MLP (multi layer perceptron/ neural network) for animal yes/no task
     - input neurons: dilation, speed, response, traces(?)
     - output neuron: ....
-- Autoencoder + Logistic Regression (in "neural_data_analysis.ipynb"):
-    - created feature vector: consists of traces 
+- Create Feature and Label vector (helper_functions.py):
+    - created feature vector consists of traces 
     - label vector: animal_in_image / animal_in_image + close_proximity
+- Autoencoder + Logistic Regression (in "Autoencoders.ipynb"):
     - used logistic regression in latent space
+#### Do, 23th Jan:
+- CEBRA (in Autoencoder.ipynb):
+    - applied CEBRA and used logistic regression in latent space
