@@ -64,6 +64,17 @@ So far there are 5 branches (additional to the "main"-branch, corresponding to t
     - label vector: animal_in_image / animal_in_image + close_proximity
 - Autoencoder + Logistic Regression (in "Autoencoders.ipynb"):
     - used logistic regression in latent space
+#### Tue, 21st Jan:
+- Overview of the experiment and dataset
+    - created a text file containing information about the experiment and dataset based on the technical white paper
 #### Do, 23th Jan:
 - CEBRA (in Autoencoder.ipynb):
     - applied CEBRA and used logistic regression in latent space
+- Calcium Imaging Method Explanation
+    - created a text file about the 2-Photon Calcium Imaging Method, that was used in the experiment to get the data
+#### Fr, 24th Jan:
+- VIP & SST background information
+    - created a text file containing background information about the VIP & SST neural populations (= neurons that are analysed in our code)
+### Sat, 25th Jan:
+- Various analyses of differences between VIP & SST neural populations
+    - reward-, change-, visual stimuli-related analyses and analysis of response latency
