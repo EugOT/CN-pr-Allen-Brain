@@ -75,6 +75,6 @@ So far there are 5 branches (additional to the "main"-branch, corresponding to t
 #### Fr, 24th Jan:
 - VIP & SST background information
     - created a text file containing background information about the VIP & SST neural populations (= neurons that are analysed in our code)
-### Sat, 25th Jan:
+#### Sat, 25th Jan:
 - Various analyses of differences between VIP & SST neural populations
     - reward-, change-, visual stimuli-related analyses and analysis of response latency
