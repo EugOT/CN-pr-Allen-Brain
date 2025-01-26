@@ -67,6 +67,7 @@ So far there are 5 branches (additional to the "main"-branch, corresponding to t
 #### Tue, 21st Jan:
 - Overview of the experiment and dataset
     - created a text file containing information about the experiment and dataset based on the technical white paper
+- Preprocessing to gather neural activity data and add additional interesting information along the way.
 #### Do, 23th Jan:
 - CEBRA (in Autoencoder.ipynb):
     - applied CEBRA and used logistic regression in latent space
@@ -78,3 +79,6 @@ So far there are 5 branches (additional to the "main"-branch, corresponding to t
 #### Sat, 25th Jan:
 - Various analyses of differences between VIP & SST neural populations
     - reward-, change-, visual stimuli-related analyses and analysis of response latency
+#### Sun, 26th Jan:
+- Try CEBRA with different labels. The results were not meaningful
+    - Based on the Autoencoder notebook

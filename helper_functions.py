@@ -92,17 +92,21 @@ def load_data_from_mouse_csv(file_path="data/neural_data/mouse_*.csv", labels=["
     This function can be used to load the mouse_*.csv files from data/neural_data, 
     which are created when executing 'neural_data_analysis.ipynb'. 
     Args: 
-        file_path       = [str]         The file path to your files. Note, that this function only works for 
-                                        the specific data created in neural_data_analysis.ipynb so using it 
-                                        for different files is not recommended.
-        labels          = [list[str]]   List containing different labels for creating the different classes.
-                                        Labels must be in "mouse_*.csv" and be boolean. 
-                                        Currently, these are only ["animal_in_image", "close_proximity"]
+        file_path       =           [str]       The file path to your files. Note, that this function only works for 
+                                                the specific data created in neural_data_analysis.ipynb so using it 
+                                                for different files is not recommended.
+        labels          =           [list[str]] List containing different labels for creating the different classes.
+                                                Labels must be in "mouse_*.csv" and be boolean. 
+                                                Currently, these are only ["animal_in_image", "close_proximity"]
+        additional_information =    [str]       This must be colum labels in the csv file.
+                                                They will be output as additional lists per mouse.
+                                                If the list is left empty, this will only return 2 values, keeping the original functionality.
 
     
     Returns:
-        feature_vector  = [list[np.array]]  List of np.arrays, containing the trace data for each mouse
-        label_vector    = [list[np.array]]  List of np.arrays, containing the label [animalLabel Array
+        feature_vector  =       [list[np.array]]  List of np.arrays, containing the trace data for each mouse
+        label_vector    =       [list[np.array]]  List of np.arrays, containing the label [animalLabel Array
+        additional_information  [list[]]          One list per mouse, one list per column label
 
     Example: If you give 2 labels as [label1, label2] the function will create classes in the following way:
         label1 false    + label2 false = class 0
@@ -166,4 +170,8 @@ def load_data_from_mouse_csv(file_path="data/neural_data/mouse_*.csv", labels=["
         
         label_vector.append(class_value)
     
-    return(feature_vector, label_vector, additional_information_vector)
+    if(len(additional_information) == 0):
+        return(feature_vector, label_vector)
+    
+    else:
+        return(feature_vector, label_vector, additional_information_vector)
