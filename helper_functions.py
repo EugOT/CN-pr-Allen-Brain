@@ -87,7 +87,7 @@ def create_neural_traces_per_label(data_file_path = "data/data.csv", columns_of_
     data_grouped.to_csv(f"{data_folder}/neural_activity_per_trial.csv", index=False)
 
 
-def load_data_from_mouse_csv(file_path="data/neural_data/mouse_*.csv", labels=["animal_in_image", "close_proximity"]):
+def load_data_from_mouse_csv(file_path="data/neural_data/mouse_*.csv", labels=["animal_in_image", "close_proximity"], additional_information=[]):
     """
     This function can be used to load the mouse_*.csv files from data/neural_data, 
     which are created when executing 'neural_data_analysis.ipynb'. 
@@ -124,6 +124,8 @@ def load_data_from_mouse_csv(file_path="data/neural_data/mouse_*.csv", labels=["
 
     feature_vector = [] # Contains list of all mice data
     label_vector = [] # Contains list of all mice labels
+    if(len(additional_information) != 0):
+        additional_information_vector = []
 
     for mouse in mouse_vector:
         X_data = []
@@ -136,6 +138,12 @@ def load_data_from_mouse_csv(file_path="data/neural_data/mouse_*.csv", labels=["
                 X_data.append(flattened_trace)
             except ValueError as e:
                 print(f"Error processing trace: {trace}, Error: {e}")
+
+        if(len(additional_information) != 0):
+            additional_data = []
+            for label in additional_information:
+                additional_data.append(mouse[label])
+            additional_information_vector.append(additional_data)
 
         feature_vector.append(np.array(X_data))
 
@@ -158,4 +166,4 @@ def load_data_from_mouse_csv(file_path="data/neural_data/mouse_*.csv", labels=["
         
         label_vector.append(class_value)
     
-    return(feature_vector, label_vector)
+    return(feature_vector, label_vector, additional_information_vector)
