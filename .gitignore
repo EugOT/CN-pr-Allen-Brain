@@ -1,5 +1,7 @@
 *.parquet
+*.csv 
 .vscode/extensions.json
 /data
 .ipynb_checkpoints/
 __pycache__/
+/iframe_figures

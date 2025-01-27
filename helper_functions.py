@@ -1,6 +1,9 @@
 import pandas as pd
 import warnings
 import os
+import glob
+import ast
+import numpy as np
 
 """
 helper_functions.py
@@ -82,3 +85,93 @@ def create_neural_traces_per_label(data_file_path = "data/data.csv", columns_of_
     if not os.path.exists(data_folder):
         os.makedirs(data_folder)
     data_grouped.to_csv(f"{data_folder}/neural_activity_per_trial.csv", index=False)
+
+
+def load_data_from_mouse_csv(file_path="data/neural_data/mouse_*.csv", labels=["animal_in_image", "close_proximity"], additional_information=[]):
+    """
+    This function can be used to load the mouse_*.csv files from data/neural_data, 
+    which are created when executing 'neural_data_analysis.ipynb'. 
+    Args: 
+        file_path       =           [str]       The file path to your files. Note, that this function only works for 
+                                                the specific data created in neural_data_analysis.ipynb so using it 
+                                                for different files is not recommended.
+        labels          =           [list[str]] List containing different labels for creating the different classes.
+                                                Labels must be in "mouse_*.csv" and be boolean. 
+                                                Currently, these are only ["animal_in_image", "close_proximity"]
+        additional_information =    [str]       This must be colum labels in the csv file.
+                                                They will be output as additional lists per mouse.
+                                                If the list is left empty, this will only return 2 values, keeping the original functionality.
+
+    
+    Returns:
+        feature_vector  =       [list[np.array]]  List of np.arrays, containing the trace data for each mouse
+        label_vector    =       [list[np.array]]  List of np.arrays, containing the label [animalLabel Array
+        additional_information  [list[]]          One list per mouse, one list per column label
+
+    Example: If you give 2 labels as [label1, label2] the function will create classes in the following way:
+        label1 false    + label2 false = class 0
+        label1 true     + label2 false = class 1
+        label1 false    + label2 true = class 2
+        label1 true     + label2 true = class 3
+    """
+    
+    # Load data of the mice
+    mouse_vector = []
+
+    # Use glob to find all files matching the pattern
+    file_paths = glob.glob(file_path)
+
+    for file_path in file_paths:
+        mouse_data = pd.read_csv(file_path)
+        mouse_vector.append(mouse_data)
+
+
+    feature_vector = [] # Contains list of all mice data
+    label_vector = [] # Contains list of all mice labels
+    if(len(additional_information) != 0):
+        additional_information_vector = []
+
+    for mouse in mouse_vector:
+        X_data = []
+        for trace in mouse["trace"]:
+            try:
+                # Safely parse and flatten the trace data
+                numeric_trace = np.array([np.fromstring(item.strip("[]"), sep=" ") 
+                                        for item in np.array(ast.literal_eval(trace))])
+                flattened_trace = numeric_trace.flatten()
+                X_data.append(flattened_trace)
+            except ValueError as e:
+                print(f"Error processing trace: {trace}, Error: {e}")
+
+        if(len(additional_information) != 0):
+            additional_data = []
+            for label in additional_information:
+                additional_data.append(mouse[label])
+            additional_information_vector.append(additional_data)
+
+        feature_vector.append(np.array(X_data))
+
+
+        # Initialize class_value as zeros with the same length as 
+        for label in labels[:]:
+            if label not in ["animal_in_image", "close_proximity"]:
+                print(f"The label {label} does not exist in {file_paths[0]} or is not boolean! Skipping {label}.")
+                labels.remove(label)
+        
+        if len(labels) == 0:
+            print("No label vector was created.")
+            return feature_vector, []
+        
+        class_value = np.zeros_like(mouse[labels[0]].astype(int))
+
+        for i, label in enumerate(labels):
+            # Add the label values to class_value
+            class_value += mouse[label].astype(int) * (i + 1)
+        
+        label_vector.append(class_value)
+    
+    if(len(additional_information) == 0):
+        return(feature_vector, label_vector)
+    
+    else:
+        return(feature_vector, label_vector, additional_information_vector)
