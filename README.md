@@ -44,7 +44,7 @@ So far there are 5 branches (additional to the "main"-branch, corresponding to t
     - targeted structure
     - sex
     - age_in_days
-- adding of labels:
+- addition of labels:
     - animal/landscape
     - close proximity/landscape
 - creation of boxplots, scatter plots and pairplots to get a first insight into data quality and patterns.
@@ -82,3 +82,8 @@ So far there are 5 branches (additional to the "main"-branch, corresponding to t
 #### Sun, 26th Jan:
 - Try CEBRA with different labels. The results were not meaningful
     - Based on the Autoencoder notebook
+
+#### Mon, 27th Jan: 
+- k-mean clusters and PCA (neural response, pupil area and running speed): 
+  - for animal (yes/no)
+  - for proximity (yes/no)
